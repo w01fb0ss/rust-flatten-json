@@ -13,7 +13,7 @@ Tiny Rust library for flattening JSON and infering JSON types
 
 ```
 [dependencies]
-rust-flatten-json = "0.1.0"
+rust-flatten-json = { git = "https://github.com/w01fb0ss/rust-flatten-json.git" }
 ```
 
 #### Example
