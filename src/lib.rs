@@ -45,7 +45,14 @@ fn flatten_object(
     for (k, v) in nested_dict.iter() {
         let new_k = match parent_key {
             Some(ref key) => format!("{}{}{}", key, sep, k),
-            None => format!("{}_", k.clone()),
+            None => {
+                let k = k.clone();
+                if k == "@timestamp" {
+                    k
+                } else {
+                    format!("{}_", k.clone())
+                }
+            },
         };
         // if nested value is object recurse with parent_key
         if let Some(obj) = v.as_object() {
