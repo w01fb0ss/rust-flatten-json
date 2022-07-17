@@ -40,7 +40,7 @@ fn flatten_object(
     infer_type: bool,
     separator: Option<&str>,
 ) -> Result<()> {
-    let sep = if let Some(sep) = separator { sep } else { "." };
+    let sep = if let Some(sep) = separator { sep } else { "_" };
 
     for (k, v) in nested_dict.iter() {
         let new_k = match parent_key {
@@ -115,7 +115,7 @@ fn flatten_array(
     separator: Option<&str>,
 ) -> Result<()> {
     for (i, obj) in v_array.iter().enumerate() {
-        let array_key = format!("{}.{}", new_k, i);
+        let array_key = format!("{}_{}", new_k, i);
         // if element is object or array recurse
         if obj.is_object() | obj.is_array() {
             flatten(obj, flat_value, Some(array_key), infer_type, separator)?;
